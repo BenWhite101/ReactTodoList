@@ -11,6 +11,7 @@ html {
 body {
   background: linear-gradient(45deg, #ffde23, #fc7820);
   background: linear-gradient(215deg, #8b08f7, #460286);
+  height: 100%;
   background-size: cover;
 }
 body h1 {
@@ -27,6 +28,7 @@ body h1 {
   max-width: 600px;
   margin: 0 auto;
   width: 100%;
+  height: 100%;
 }
 .todoList {
   padding: 40px 30px 30px 30px;
