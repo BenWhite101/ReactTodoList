@@ -51,8 +51,8 @@ function App() {
     setTodos(newTodos)
   }
 
-  function handleAddTodo(e) {
-    const newTodos;
+  function handleClearAll(e) {
+    const newTodos = "";
     setTodos(newTodos)
   }
 
