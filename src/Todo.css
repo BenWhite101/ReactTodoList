@@ -57,7 +57,7 @@ body h1 {
   background: white;
   border-radius: 50%;
   position: relative;
-  top: 6px;
+  top: 5px;
   border: 0;
   transition: all 0.4s ease-in-out;
 }
@@ -109,7 +109,7 @@ body h1 {
   font-size: 20px;
   font-weight: 500;
   border-radius: 50px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
   transform: scale(1);
 }
 .toolbar .actions .btn:active {
