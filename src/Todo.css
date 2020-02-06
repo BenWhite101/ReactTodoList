@@ -37,6 +37,10 @@ body h1 {
   position: relative;
   top: 6px;
 }
+.todoList .todo label input[type="checkbox"]:after {
+  width: 20px;
+  height: 20px;
+}
 .todoList .todo label .name {
   font-size: 30px;
   margin-left: 10px;
@@ -73,12 +77,12 @@ body h1 {
   -webkit-appearance: none;
   border: 0;
   background: #ff0d0d;
-  box-shadow: 0 0 10px 0 0 10px #ff0d0d;
+  box-shadow: 0 0 10px #ff0d0d;
   color: white;
   box-shadow: none;
   display: block;
-  padding: 5px 5px 10px 5px;
-  font-size: 25px;
+  padding: 15px 5px;
+  font-size: 20px;
   font-weight: 500;
   border-radius: 50px;
   transition: all 0.3s ease-in-out;
