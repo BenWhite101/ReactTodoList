@@ -76,7 +76,7 @@ function App() {
 
       <div class="actions">
         
-        <button class="btn clear" onClick={handleClearTodos}>Clear Collected</button>
+        <button class="btn clear" onClick={handleClearTodos}>Clear</button>
         <button class="btn add" onClick={handleAddTodo}>Add</button>
       </div>
       
