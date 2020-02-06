@@ -14,6 +14,9 @@ body {
   height: 100%;
   background-size: cover;
 }
+body * {
+  outline: unset !important;
+}
 body h1 {
   text-align: center;
   color: white;
