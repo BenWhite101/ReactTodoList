@@ -1,6 +1,8 @@
-body,
 html {
   height: 100%;
+}
+body,
+html {
   font-family: Poppins, sans-serif;
   color: #252525;
   font-weight: 500;
@@ -40,4 +42,23 @@ body {
   box-shadow: none;
   border-radius: 10px;
   box-sizing: border-box;
+}
+.toolbar .actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+  margin-top: 20px;
+}
+.toolbar .actions .btn {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: red;
+  box-shadow: none;
+  display: block;
+  padding: 30px;
+  font-size: 50px;
+  font-weight: 900;
+  border-radius: 10px;
 }
