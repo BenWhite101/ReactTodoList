@@ -66,6 +66,7 @@ function App() {
  
   return (
     <>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,900&display=swap" rel="stylesheet"/> 
     <div class="todoList">
       <TodoList todos={todos} toggleTodo={toggleTodo} />  
     </div>
