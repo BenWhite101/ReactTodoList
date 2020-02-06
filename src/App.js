@@ -51,6 +51,12 @@ function App() {
     setTodos(newTodos)
   }
 
+  function handleAddTodo(e) {
+    const newTodos;
+    setTodos(newTodos)
+  }
+
+
   /*
   document.getElementById('enterTodo').addEventListener("keyup", function(event) {
     event.preventDefault();
@@ -72,6 +78,7 @@ function App() {
       <TodoList todos={todos} toggleTodo={toggleTodo} />  
     </div>
     <div class="toolbar">
+    <button class="btn add" onClick={handleClearAll}>New</button>
       <input id="enterTodo" ref={todoNameRef} /*onKeyPress={this.keyPressed}*/ type="text" />
 
       <div class="actions">
