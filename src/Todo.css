@@ -37,11 +37,12 @@ body h1 {
   font-size: 15px;
   position: absolute;
   top: 28px;
-  right: 30px;
+  left: 30px;
   color: white;
   background: #f91a1a;
-  padding: 1px 10px;
+  padding: 4px 15px;
   border-radius: 22px;
+  border: 0;
 }
 .todoList {
   padding: 40px 30px 30px 30px;
