@@ -29,7 +29,7 @@ body h1 {
   width: 100%;
 }
 .todoList {
-  padding: ;
+  padding: 40px 30px 30px 30px;
 }
 .todoList .todo label input[type="checkbox"] {
   appearance: none;
