@@ -71,11 +71,11 @@ function App() {
     var element = document.getElementById("body");
     //element.classList.add("mystyle");
     console.log(element.className);
-    if (element.className = 'purple'){
+    if (element.className == 'purple'){
       element.className = 'orange';
-    } else if (element.className = 'orange'){
+    } else if (element.className == 'orange'){
       element.className = 'green';
-    } else if (element.className = 'green'){
+    } else if (element.className == 'green'){
       element.className = 'purple';
     }
  }
