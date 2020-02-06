@@ -67,7 +67,7 @@ function App() {
   return (
     <>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Poppins:300,400,500,600,700,900&display=swap" rel="stylesheet"/> 
-    <h1>Our List <div class="amount" style="float:right"><span>{todos.filter(todo => !todo.complete).length}</span> left todo</div></h1>
+    <h1>Our List <div class="amount"><span>{todos.filter(todo => !todo.complete).length}</span> left todo</div></h1>
     <div class="todoList">
       <TodoList todos={todos} toggleTodo={toggleTodo} />  
     </div>
