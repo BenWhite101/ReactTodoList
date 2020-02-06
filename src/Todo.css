@@ -12,17 +12,24 @@ body {
   margin: 0 auto;
   width: 100%;
 }
+.todoList {
+  padding: 30px;
+}
+.todoList .todo label .name {
+  font-size: 30px;
+  margin-left: 10px;
+}
 .toolbar {
   position: absolute;
   bottom: 20px;
   transform: translate(-50%, 0);
+  width: 80%;
   left: 50%;
 }
 .toolbar input {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  height: 30px;
   padding: 10px 20px;
   font-size: 22px;
   width: 100%;
@@ -30,4 +37,5 @@ body {
   border: 0;
   box-shadow: none;
   border-radius: 10px;
+  box-sizing: border-box;
 }
