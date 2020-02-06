@@ -67,7 +67,11 @@ function App() {
     }
   }) */
 
-
+  function myFunction() {
+   // var element = document.getElementById("body");
+    //element.classList.add("mystyle");
+    //element.className = ''
+ }
   
  
   return (

@@ -9,6 +9,13 @@
 @t2-main: #4CAF50;
 @t2-dark: #2E7D32;
 
+
+
+@t3-bg: linear-gradient(215deg, #FB8C00, #E65100);
+@t3-btn: rgb(139, 8, 247);
+@t3-main: #FB8C00;
+@t3-dark: #E65100;
+
 html {
       height: 100%;
 }
@@ -230,5 +237,29 @@ body.green{
       .btn{
             background: @t2-btn;
             box-shadow: 0 0 10px 2px @t2-btn;
+      }
+}
+
+body.orange{
+      background: @t3-bg;
+      h1 {
+            background: @t3-main;
+            box-shadow: 0 -5px 20px 0px @t3-dark;
+      }
+      
+      .todo{
+            border-bottom: 1px solid @t3-dark;
+      }
+
+      input[type="checkbox"] {
+            &:checked {
+                  background: @t3-btn;
+                  border: 4px solid white;
+            }
+      }
+
+      .btn{
+            background: @t3-btn;
+            box-shadow: 0 0 10px 2px @t3-btn;
       }
 }

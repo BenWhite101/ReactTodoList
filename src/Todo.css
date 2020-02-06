@@ -166,3 +166,21 @@ body.green .btn {
   background: #8b08f7;
   box-shadow: 0 0 10px 2px #8b08f7;
 }
+body.orange {
+  background: linear-gradient(215deg, #FB8C00, #E65100);
+}
+body.orange h1 {
+  background: #FB8C00;
+  box-shadow: 0 -5px 20px 0px #E65100;
+}
+body.orange .todo {
+  border-bottom: 1px solid #E65100;
+}
+body.orange input[type="checkbox"]:checked {
+  background: #8b08f7;
+  border: 4px solid white;
+}
+body.orange .btn {
+  background: #8b08f7;
+  box-shadow: 0 0 10px 2px #8b08f7;
+}
