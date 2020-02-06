@@ -74,8 +74,9 @@ function App() {
       <input id="enterTodo" ref={todoNameRef} /*onKeyPress={this.keyPressed}*/ type="text" />
 
       <div class="actions">
-        <button class="btn add" onClick={handleAddTodo}>+</button>
+        
         <button class="btn clear" onClick={handleClearTodos}>-</button>
+        <button class="btn add" onClick={handleAddTodo}>+</button>
       </div>
       <div class="amount"><span>{todos.filter(todo => !todo.complete).length}</span> left todo</div>
     </div>
