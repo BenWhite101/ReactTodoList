@@ -52,7 +52,7 @@ function App() {
   }
 
   function handleClearAll(e) {
-    const newTodos = {todos};
+    const newTodos = todos.filter(todo => !todo.complete && todo.complete) //all none complete todos
     setTodos(newTodos)
   }
 
