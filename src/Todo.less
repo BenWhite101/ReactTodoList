@@ -4,6 +4,11 @@
 @t1-dark: rgb(70, 2, 134);
 
 
+@t2-bg: linear-gradient(215deg, #4CAF50, #2E7D32);
+@t2-btn: rgb(139, 8, 247);
+@t2-main: #4CAF50;
+@t2-dark: #2E7D32;
+
 html {
       height: 100%;
 }
@@ -181,10 +186,7 @@ grid-template-columns: 40px auto;
 
 
 body.purple{
-
-      background: linear-gradient(215deg, rgb(139, 8, 247), rgb(70, 2, 134));
-
-      
+      background: @t1-bg;
       h1 {
             background: @t1-main;
             box-shadow: 0 -5px 20px 0px @t1-dark;
@@ -204,5 +206,29 @@ body.purple{
       .btn{
             background: @t1-btn;
             box-shadow: 0 0 10px 2px @t1-btn;
+      }
+}
+
+body.green{
+      background: @t2-bg;
+      h1 {
+            background: @t2-main;
+            box-shadow: 0 -5px 20px 0px @t2-dark;
+      }
+      
+      .todo{
+            border-bottom: 1px solid @t2-dark;
+      }
+
+      input[type="checkbox"] {
+            &:checked {
+                  background: @t2-btn;
+                  border: 4px solid white;
+            }
+      }
+
+      .btn{
+            background: @t2-btn;
+            box-shadow: 0 0 10px 2px @t2-btn;
       }
 }

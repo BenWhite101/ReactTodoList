@@ -148,3 +148,21 @@ body.purple .btn {
   background: #f91a1a;
   box-shadow: 0 0 10px 2px #f91a1a;
 }
+body.green {
+  background: linear-gradient(215deg, #4CAF50, #2E7D32);
+}
+body.green h1 {
+  background: #4CAF50;
+  box-shadow: 0 -5px 20px 0px #2E7D32;
+}
+body.green .todo {
+  border-bottom: 1px solid #2E7D32;
+}
+body.green input[type="checkbox"]:checked {
+  background: #8b08f7;
+  border: 4px solid white;
+}
+body.green .btn {
+  background: #8b08f7;
+  box-shadow: 0 0 10px 2px #8b08f7;
+}
