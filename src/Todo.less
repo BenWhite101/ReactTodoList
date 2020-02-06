@@ -37,8 +37,18 @@ body {
 
 .todoList {
       padding: 40px 30px 30px 30px;
+      padding-bottom: 50px;
+
+overflow: scroll;
+
+display: block;
+
+
+height: calc(100% - 330px);
 
       .todo {
+            border-bottom: 1px solid rgb(70, 2, 134);
+            padding: 10px 0;
             label {
                   input[type="checkbox"] {
                         appearance: none;
@@ -55,7 +65,7 @@ body {
 
 
                         &:checked {
-                              background:  #f44336 ;
+                              background: #f44336;
                               border: 4px solid white;
 
                         }
@@ -103,7 +113,7 @@ body {
                   -moz-appearance: none;
                   -webkit-appearance: none;
                   border: 0;
-                  background:  #f44336 ;
+                  background: #f44336;
                   box-shadow: 0 0 10px 2px rgba(255, 13, 13, 0.9);
                   color: white;
                   box-shadow: none;
@@ -126,4 +136,11 @@ body {
                   }
             }
       }
+}
+
+.amount {
+      font-size: 15px;
+      position: absolute;
+      top: 28px;
+      right: 15px;
 }

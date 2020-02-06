@@ -30,6 +30,14 @@ body h1 {
 }
 .todoList {
   padding: 40px 30px 30px 30px;
+  padding-bottom: 50px;
+  overflow: scroll;
+  display: block;
+  height: calc(100% - 330px);
+}
+.todoList .todo {
+  border-bottom: 1px solid #460286;
+  padding: 10px 0;
 }
 .todoList .todo label input[type="checkbox"] {
   appearance: none;
@@ -97,4 +105,10 @@ body h1 {
 }
 .toolbar .actions .btn:active {
   transform: scale(0.9);
+}
+.amount {
+  font-size: 15px;
+  position: absolute;
+  top: 28px;
+  right: 15px;
 }
