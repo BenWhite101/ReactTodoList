@@ -43,6 +43,7 @@ function App() {
       return [...prevTodos, {id: uuidv4(), name: name, complete: false}]
     })
     todoNameRef.current.value = null  //Clear input
+    todoNameRef.focus()
   }
 
   function handleClearTodos(e) {
@@ -54,9 +55,9 @@ function App() {
     <>
     <TodoList todos={todos} toggleTodo={toggleTodo} />  
     <input ref={todoNameRef} type="text" />
-    <button onClick={handleAddTodo}>Add Todo</button>
-    <button onClick={handleClearTodos}>Clear Completed</button>
-    <div>{todos.filter(todo => !todo.complete).length} left todo bro</div>
+    <button class="btn add" onClick={handleAddTodo}>Add Todo</button>
+    <button class="btn clear" onClick={handleClearTodos}>Clear Completed</button>
+    <div class="amount"><span>{todos.filter(todo => !todo.complete).length}</span> left todo bro</div>
     
     </>
     )
