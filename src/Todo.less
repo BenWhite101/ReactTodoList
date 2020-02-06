@@ -42,6 +42,7 @@ body {
                         border-radius: 50%;
                         position: relative;
                         top: 6px;
+                        border:0;
 
                         &:after{
                               content:"";
@@ -56,12 +57,14 @@ body {
                               transition: all 0.4s ease-in-out;
                         }
                         &:checked{
+                              background:rgb(255, 13, 13);
+                              border: 4px solid white;
                               &:after{
                                     
                                     scale(1);
                                     
                               }
-                        }0 0 10px 5px rgba(255, 13, 13, 0.9)
+                        }
                   }
 
                   .name {
