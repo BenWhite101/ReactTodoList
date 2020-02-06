@@ -52,7 +52,7 @@ function App() {
   }
 
   function handleClearAll(e) {
-    const newTodos = "";
+    const newTodos = todos.filter(todo);
     setTodos(newTodos)
   }
 
