@@ -66,7 +66,8 @@ function App() {
  
   return (
     <>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,900&display=swap" rel="stylesheet"/> 
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Poppins:300,400,500,600,700,900&display=swap" rel="stylesheet"/> 
+    <h1>Our List</h1>
     <div class="todoList">
       <TodoList todos={todos} toggleTodo={toggleTodo} />  
     </div>
@@ -75,8 +76,8 @@ function App() {
 
       <div class="actions">
         
-        <button class="btn clear" onClick={handleClearTodos}>-</button>
-        <button class="btn add" onClick={handleAddTodo}>+</button>
+        <button class="btn clear" onClick={handleClearTodos}>Clear</button>
+        <button class="btn add" onClick={handleAddTodo}>Add</button>
       </div>
       <div class="amount"><span>{todos.filter(todo => !todo.complete).length}</span> left todo</div>
     </div>

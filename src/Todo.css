@@ -4,12 +4,19 @@ html {
 body,
 html {
   font-family: Poppins, sans-serif;
-  color: #252525;
-  font-weight: 500;
+  color: white;
+  font-weight: 400;
 }
 body {
   background: linear-gradient(45deg, #ffde23, #fc7820);
+  background: linear-gradient(215deg, #8b08f7, #460286);
   background-size: cover;
+}
+body h1 {
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  font-weight: 500;
 }
 #root {
   max-width: 600px;
@@ -18,6 +25,17 @@ body {
 }
 .todoList {
   padding: 30px;
+}
+.todoList .todo label input[type="checkbox"] {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  width: 25px;
+  height: 25px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  top: 6px;
 }
 .todoList .todo label .name {
   font-size: 30px;
@@ -40,7 +58,7 @@ body {
   display: block;
   border: 0;
   box-shadow: none;
-  border-radius: 10px;
+  border-radius: 50px;
   box-sizing: border-box;
 }
 .toolbar .actions {
@@ -54,12 +72,18 @@ body {
   -moz-appearance: none;
   -webkit-appearance: none;
   border: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: #ff0d0d;
+  box-shadow: 0 0 10px 0 0 10px #ff0d0d;
   color: white;
   box-shadow: none;
   display: block;
   padding: 5px 5px 10px 5px;
-  font-size: 50px;
-  font-weight: 900;
-  border-radius: 10px;
+  font-size: 25px;
+  font-weight: 500;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
+}
+.toolbar .actions .btn:active {
+  transform: scale(0.9);
 }
