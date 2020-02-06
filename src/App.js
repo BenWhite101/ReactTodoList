@@ -43,7 +43,7 @@ function App() {
       return [...prevTodos, {id: uuidv4(), name: name, complete: false}]
     })
     todoNameRef.current.value = null  //Clear input
-    todoNameRef.focus()
+    todoNameRef.current.focus();
   }
 
   function handleClearTodos(e) {
