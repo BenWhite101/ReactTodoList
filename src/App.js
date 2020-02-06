@@ -51,15 +51,15 @@ function App() {
     setTodos(newTodos)
   }
 
-
+  /*
   document.getElementById('enterTodo').addEventListener("keyup", function(event) {
     event.preventDefault();
     keyPressed(event) {
       if (event.key === "Enter") {
-        handleAddTodo();
+        
       }
     }
-  })
+  }) */
 
 
   
