@@ -67,7 +67,7 @@ function App() {
   return (
     <>
     <TodoList todos={todos} toggleTodo={toggleTodo} />  
-    <input id="enterTodo" ref={todoNameRef} onKeyPress={this.keyPressed} type="text" />
+    <input id="enterTodo" ref={todoNameRef} /*onKeyPress={this.keyPressed}*/ type="text" />
     <button class="btn add" onClick={handleAddTodo}>Add Todo</button>
     <button class="btn clear" onClick={handleClearTodos}>Clear Completed</button>
     <div class="amount"><span>{todos.filter(todo => !todo.complete).length}</span> left todo bro</div>
