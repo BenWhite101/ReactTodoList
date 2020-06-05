@@ -16,6 +16,13 @@
 @t3-main: #FB8C00;
 @t3-dark: #E65100;
 
+
+
+@t4-bg:linear-gradient(215deg,#626fc1,#303F9F);
+@t4-btn: #f91a1a;
+@t4-main: #626fc1;
+@t4-dark: #303F9F;
+
 html {
       height: 100%;
 }
@@ -269,5 +276,29 @@ body.orange{
       .btn{
             background: @t3-btn;
             box-shadow: 0 0 10px 2px @t3-btn;
+      }
+}
+
+body.blue{
+      background: @t4-bg;
+      h1 {
+            background: @t4-main;
+            box-shadow: 0 -5px 20px 0px @t4-dark;
+      }
+      
+      .todo{
+            border-bottom: 1px solid @t4-dark;
+      }
+
+      input[type="checkbox"] {
+            &:checked {
+                  background: @t4-btn;
+                  border: 4px solid white;
+            }
+      }
+
+      .btn{
+            background: @t4-btn;
+            box-shadow: 0 0 10px 2px @t4-btn;
       }
 }

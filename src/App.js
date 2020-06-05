@@ -76,6 +76,8 @@ function App() {
     } else if (element.className == 'orange'){
       element.className = 'green';
     } else if (element.className == 'green'){
+      element.className = 'blue';
+    } else if (element.className == 'blue'){
       element.className = 'purple';
     }
  }
