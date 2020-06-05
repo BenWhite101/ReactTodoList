@@ -15,6 +15,7 @@ body {
 body * {
   outline: unset !important;
   transition: all 0.4s ease-in-out;
+  font-family: Poppins, sans-serif;
 }
 body h1 {
   text-align: center;
