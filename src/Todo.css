@@ -74,6 +74,13 @@ body h1 {
   font-size: 26px;
   margin-left: 10px;
 }
+.todoList .todo label textarea {
+  background: unset;
+  border: unset;
+  width: 100%;
+  font-size: 26px;
+  color: white;
+}
 .todoList .todo:last-of-type {
   border: 0;
 }
