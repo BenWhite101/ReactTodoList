@@ -86,7 +86,7 @@ function App() {
   return (
     <>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Poppins:300,400,500,600,700,900&display=swap" rel="stylesheet"/> 
-    <h1 onClick={myFunction}><button class="btn clearall" onClick={handleClearAll}>New</button> Our List <div class="amount"><span>{todos.filter(todo => !todo.complete).length}</span> left</div></h1>
+    <h1 onClick={myFunction}><button class="btn clearall" onClick={handleClearAll}>New</button> Shopix <div class="amount"><span>{todos.filter(todo => !todo.complete).length}</span> left</div></h1>
     <div class="todoList">
       <TodoList todos={todos} toggleTodo={toggleTodo} />  
     </div>
