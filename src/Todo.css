@@ -187,7 +187,7 @@ body h1 {
 }
 .menu-panel-body {
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
 }
 .menu-panel-track {
   display: flex;
@@ -247,6 +247,7 @@ body h1 {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 60px;
 }
 .menu-group-header {
   width: 100%;

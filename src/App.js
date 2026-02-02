@@ -296,7 +296,7 @@ function App() {
 
   const menuTitle = (() => {
     if (menuScreen === 'theme') return 'Choose theme'
-    if (menuScreen === 'select') return 'Select items'
+    if (menuScreen === 'select') return 'Produce List'
     return 'Menu'
   })()
 
@@ -368,7 +368,7 @@ function App() {
                         <path d="M4 6h10M4 12h10M4 18h10M18 7l2 2-3.5 3.5-2-2L18 7z" />
                       </svg>
                     </span>
-                    <span class="menu-item-label">Select Items</span>
+                    <span class="menu-item-label">Produce List</span>
                     <span class="menu-item-right">
                       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M9 6l1.4-1.4L18.8 12l-8.4 7.4L9 18l6-6z" />
