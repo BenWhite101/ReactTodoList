@@ -1,0 +1,40 @@
+{
+  "groups": [
+    {
+      "id": "meat",
+      "name": "Meat",
+      "items": [
+        { "id": "mince", "name": "Mince meat" },
+        { "id": "chicken-breast", "name": "Chicken breast" },
+        { "id": "sausages", "name": "Sausages" }
+      ]
+    },
+    {
+      "id": "dairy",
+      "name": "Dairy",
+      "items": [
+        { "id": "milk", "name": "Milk" },
+        { "id": "eggs", "name": "Eggs" },
+        { "id": "butter", "name": "Butter" }
+      ]
+    },
+    {
+      "id": "produce",
+      "name": "Produce",
+      "items": [
+        { "id": "apples", "name": "Apples" },
+        { "id": "bananas", "name": "Bananas" },
+        { "id": "onions", "name": "Onions" }
+      ]
+    },
+    {
+      "id": "bakery",
+      "name": "Bakery",
+      "items": [
+        { "id": "bread", "name": "Bread" },
+        { "id": "bagels", "name": "Bagels" },
+        { "id": "tortillas", "name": "Tortillas" }
+      ]
+    }
+  ]
+}

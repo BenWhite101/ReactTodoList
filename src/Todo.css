@@ -168,8 +168,8 @@ body h1 {
 .menu-item:hover {
   background: rgba(0, 0, 0, 0.08);
 }
-.menu-item-next {
-  justify-content: space-between;
+.menu-item-next .menu-item-label {
+  margin-right: auto;
 }
 .menu-item-next svg {
   width: 18px;
@@ -191,11 +191,8 @@ body h1 {
 }
 .menu-panel-track {
   display: flex;
-  width: 200%;
+  width: 400%;
   transition: transform 0.25s ease;
-}
-.menu-panel-track.theme {
-  transform: translateX(-100%);
 }
 .menu-view {
   flex: 0 0 100%;
