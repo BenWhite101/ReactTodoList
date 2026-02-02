@@ -13,7 +13,11 @@ import {
   ChickenThighsIcon,
   CroissantIcon,
   EggsIcon,
+  FishFoodIcon,
+  HotdogIcon,
   MilkCartonIcon,
+  NutIcon,
+  PiggyBankIcon,
   SausageIcon,
   SteakIcon,
   Taco01Icon,
@@ -47,7 +51,11 @@ const GROCERY_ICON_MAP = {
   ChickenThighsIcon,
   CroissantIcon,
   EggsIcon,
+  FishFoodIcon,
+  HotdogIcon,
   MilkCartonIcon,
+  NutIcon,
+  PiggyBankIcon,
   SausageIcon,
   SteakIcon,
   Taco01Icon,
@@ -419,6 +427,7 @@ function App() {
                   </div>
                 </div>
                 <div class="menu-view menu-view-select">
+                  <div class="scroll">
                   <div class="menu-select-controls">
                     <div class="menu-search">
                       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -482,6 +491,7 @@ function App() {
                         </div>
                       )
                     })}
+                  </div>
                   </div>
                 </div>
               </div>
