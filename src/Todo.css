@@ -187,11 +187,11 @@ body h1 {
 }
 .menu-panel-body {
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
 }
 .menu-panel-track {
   display: flex;
-  width: 300%;
+  width: 100%;
   transition: transform 0.25s ease;
 }
 .menu-view {
@@ -247,6 +247,7 @@ body h1 {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-bottom: 60px;
 }
 .menu-group-header {
   width: 100%;
