@@ -51,9 +51,15 @@ body h1 {
 .todoList .todo {
   padding: 10px 0;
 }
+.todoList .todo .todo-row {
+  display: grid;
+  grid-template-columns: 1fr 36px;
+  align-items: center;
+}
 .todoList .todo label {
   display: grid;
   grid-template-columns: 40px auto;
+  align-items: center;
 }
 .todoList .todo label input[type="checkbox"] {
   appearance: none;
@@ -74,6 +80,34 @@ body h1 {
 .todoList .todo label .name {
   font-size: 26px;
   margin-left: 10px;
+}
+.todoList .todo .edit-btn {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  color: white;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.todoList .todo .edit-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+.todoList .todo .edit-btn:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.todoList .todo .edit-btn:active {
+  transform: scale(0.95);
 }
 .todoList .todo label textarea {
   background: unset;
