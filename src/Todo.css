@@ -168,8 +168,8 @@ body h1 {
 .menu-item:hover {
   background: rgba(0, 0, 0, 0.08);
 }
-.menu-item-next {
-  justify-content: space-between;
+.menu-item-next .menu-item-label {
+  margin-right: auto;
 }
 .menu-item-next svg {
   width: 18px;
