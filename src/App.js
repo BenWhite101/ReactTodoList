@@ -19,6 +19,44 @@ const THEMES = [
   { id: 'white', label: 'White' }
 ]
 
+function isValidTodos(value) {
+  return Array.isArray(value) && value.every(item => item && typeof item.id === 'string' && typeof item.name === 'string' && typeof item.complete === 'boolean')
+}
+
+function loadState() {
+  const fallback = { todos: [], theme: 'purple' }
+  let parsed = null
+  try {
+    const raw = localStorage.getItem(LOCAL_STORAGE_STATE_KEY)
+    if (raw) parsed = JSON.parse(raw)
+  } catch (e) {
+    parsed = null
+  }
+
+  if (parsed && parsed.version === STORAGE_VERSION) {
+    const nextTodos = isValidTodos(parsed.todos) ? parsed.todos : fallback.todos
+    const nextTheme = THEMES.some(themeOption => themeOption.id === parsed.theme) ? parsed.theme : fallback.theme
+    return { todos: nextTodos, theme: nextTheme }
+  }
+
+  // Migration from legacy keys
+  let legacyTodos = null
+  let legacyTheme = null
+  try {
+    const rawTodos = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (rawTodos) legacyTodos = JSON.parse(rawTodos)
+  } catch (e) {
+    legacyTodos = null
+  }
+  legacyTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+  if (!THEMES.some(themeOption => themeOption.id === legacyTheme)) {
+    legacyTheme = fallback.theme
+  }
+
+  const migratedTodos = isValidTodos(legacyTodos) ? legacyTodos : fallback.todos
+  return { todos: migratedTodos, theme: legacyTheme || fallback.theme }
+}
+
 function App() {
   //const [todos, setTodos] =  useState([{id: 1, name: 'Todo 1', complete: false}])
   const [todos, setTodos] =  useState([])
@@ -33,44 +71,6 @@ function App() {
 
 
   //Storing
-  function isValidTodos(value) {
-    return Array.isArray(value) && value.every(item => item && typeof item.id === 'string' && typeof item.name === 'string' && typeof item.complete === 'boolean')
-  }
-
-  function loadState() {
-    const fallback = { todos: [], theme: 'purple' }
-    let parsed = null
-    try {
-      const raw = localStorage.getItem(LOCAL_STORAGE_STATE_KEY)
-      if (raw) parsed = JSON.parse(raw)
-    } catch (e) {
-      parsed = null
-    }
-
-    if (parsed && parsed.version === STORAGE_VERSION) {
-      const nextTodos = isValidTodos(parsed.todos) ? parsed.todos : fallback.todos
-      const nextTheme = THEMES.some(themeOption => themeOption.id === parsed.theme) ? parsed.theme : fallback.theme
-      return { todos: nextTodos, theme: nextTheme }
-    }
-
-    // Migration from legacy keys
-    let legacyTodos = null
-    let legacyTheme = null
-    try {
-      const rawTodos = localStorage.getItem(LOCAL_STORAGE_KEY)
-      if (rawTodos) legacyTodos = JSON.parse(rawTodos)
-    } catch (e) {
-      legacyTodos = null
-    }
-    legacyTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
-    if (!THEMES.some(themeOption => themeOption.id === legacyTheme)) {
-      legacyTheme = fallback.theme
-    }
-
-    const migratedTodos = isValidTodos(legacyTodos) ? legacyTodos : fallback.todos
-    return { todos: migratedTodos, theme: legacyTheme || fallback.theme }
-  }
-
   useEffect(() => { // call once - this is for refreshing page persist
     const state = loadState()
     setTodos(state.todos)
