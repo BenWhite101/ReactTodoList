@@ -5,6 +5,8 @@ import TodoList from './TodoList'
 //useEffect - localstorage thing
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
+const LOCAL_STORAGE_THEME_KEY = 'todoApp.theme'
+const THEMES = ['purple', 'orange', 'green', 'blue']
 
 function App() {
   //const [todos, setTodos] =  useState([{id: 1, name: 'Todo 1', complete: false}])
@@ -12,6 +14,10 @@ function App() {
   const todoNameRef = useRef() // Give access to input element
   const [lastAddedId, setLastAddedId] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [menuClosing, setMenuClosing] = useState(false)
+  const [menuView, setMenuView] = useState('root')
+  const [theme, setTheme] = useState('purple')
+  const closeTimerRef = useRef(null)
 
 
 
@@ -20,12 +26,23 @@ function App() {
     // gets local storage key from local storage
     const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     if(storedTodos) setTodos(storedTodos)
+    const storedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+    if (storedTheme && THEMES.includes(storedTheme)) {
+      setTheme(storedTheme)
+    }
   }, [])
 
   //Getting our todos
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
   }, [todos])
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme)
+    const element = document.getElementById("body");
+    if (element) {
+      element.className = theme
+    }
+  }, [theme])
 
   useEffect(() => {
     if (!lastAddedId) return
@@ -103,34 +120,52 @@ function App() {
     }
   }) */
 
-  function cycleTheme() {
-    var element = document.getElementById("body");
-    //element.classList.add("mystyle");
-    console.log(element.className);
-    if (element.className === 'purple'){
-      element.className = 'orange';
-    } else if (element.className === 'orange'){
-      element.className = 'green';
-    } else if (element.className === 'green'){
-      element.className = 'blue';
-    } else if (element.className === 'blue'){
-      element.className = 'purple';
+  function openMenu() {
+    setMenuClosing(false)
+    setMenuOpen(true)
+  }
+
+  function closeMenu() {
+    setMenuClosing(true)
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current)
     }
- }
- 
+    closeTimerRef.current = setTimeout(() => {
+      setMenuOpen(false)
+      setMenuClosing(false)
+      setMenuView('root')
+    }, 250)
+  }
+
   function toggleMenu() {
-    setMenuOpen(open => !open)
+    if (menuOpen && !menuClosing) {
+      closeMenu()
+    } else {
+      openMenu()
+    }
   }
 
   function handleNewList() {
     handleClearAll()
-    setMenuOpen(false)
+    closeMenu()
   }
 
-  function handleThemeChange() {
-    cycleTheme()
-    setMenuOpen(false)
+  function openThemeMenu() {
+    setMenuView('theme')
   }
+
+  function handleThemeSelect(nextTheme) {
+    setTheme(nextTheme)
+    closeMenu()
+  }
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current)
+      }
+    }
+  }, [])
 
  
   
@@ -152,18 +187,60 @@ function App() {
       </button>
       {menuOpen && (
         <>
-          <div class="menu-backdrop" onClick={toggleMenu}></div>
-          <div class="menu-panel">
+          <div class={`menu-backdrop ${menuClosing ? 'closing' : ''}`} onClick={toggleMenu}></div>
+          <div class={`menu-panel ${menuClosing ? 'closing' : ''}`}>
             <div class="menu-panel-header">
-              <span>Menu</span>
+              {menuView !== 'root' && (
+                <button class="menu-back" onClick={() => setMenuView('root')} aria-label="Back">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z" />
+                  </svg>
+                </button>
+              )}
+              <span>{menuView === 'theme' ? 'Choose theme' : 'Menu'}</span>
               <button class="menu-close" onClick={toggleMenu} aria-label="Close menu">
                 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <path d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.29 19.71 2.88 18.3 9.18 12 2.88 5.71 4.29 4.29l6.3 6.3 6.29-6.3 1.42 1.42z" />
                 </svg>
               </button>
             </div>
-            <button class="menu-item" onClick={handleNewList}>New list</button>
-            <button class="menu-item" onClick={handleThemeChange}>Change theme</button>
+            <div class="menu-panel-body">
+              <div class={`menu-panel-track ${menuView}`}>
+                <div class="menu-view menu-view-root">
+                  <button class="menu-item" onClick={handleNewList}>New list</button>
+                  <button class="menu-item menu-item-next" onClick={openThemeMenu}>
+                    <span class="menu-item-label">Change theme</span>
+                    <span class="menu-item-right">
+                      <span class="menu-item-meta">{theme.charAt(0).toUpperCase() + theme.slice(1)}</span>
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M9 6l1.4-1.4L18.8 12l-8.4 7.4L9 18l6-6z" />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+                <div class="menu-view menu-view-theme">
+                  <div class="menu-theme-list">
+                    {THEMES.map((item) => (
+                      <button
+                        key={item}
+                        class={`menu-item ${theme === item ? 'menu-item-active' : ''}`}
+                        onClick={() => handleThemeSelect(item)}
+                      >
+                        <span class={`theme-dot ${item}`}></span>
+                        {item.charAt(0).toUpperCase() + item.slice(1)}
+                        {theme === item && (
+                          <span class="menu-item-check" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                              <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                            </svg>
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </>
       )}
