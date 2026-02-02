@@ -15,7 +15,13 @@
       "items": [
         { "id": "milk", "name": "Milk", "icon": "MilkCartonIcon" },
         { "id": "eggs", "name": "Eggs", "icon": "EggsIcon" },
-        { "id": "butter", "name": "Butter", "icon": "CheeseIcon" }
+        { "id": "cheese", "name": "Cheese", "icon": "CheeseIcon" },
+        { "id": "butter", "name": "Butter", "icon": "YogurtIcon" },
+        { "id": "yogurt", "name": "Yogurt", "icon": "YogurtIcon" },
+        { "id": "potYogurt", "name": "Pot Yogurt", "icon": "YogurtIcon" },
+        { "id": "curdCheese", "name": "Curd Cheese", "icon": "CheeseIcon" },
+        { "id": "brie", "name": "Brie", "icon": "CheeseIcon" },
+        { "id": "cheeseSlices", "name": "Cheese Slices", "icon": "CheeseIcon" }
       ]
     },
     {
@@ -31,8 +37,9 @@
       "id": "bakery",
       "name": "Bakery",
       "items": [
-        { "id": "bread", "name": "Bread", "icon": "Bread01Icon" },
-        { "id": "bagels", "name": "Bagels", "icon": "CroissantIcon" },
+        { "id": "bread", "name": "Bread", "icon": "Bread04Icon" },
+        { "id": "croiss", "name": "Croissants", "icon": "CroissantIcon" },
+        { "id": "crumpet", "name": "Crumpets", "icon": "Bread03Icon" },
         { "id": "tortillas", "name": "Tortillas", "icon": "Taco01Icon" }
       ]
     }
