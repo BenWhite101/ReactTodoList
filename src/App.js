@@ -139,17 +139,34 @@ function App() {
     <>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Poppins:300,400,500,600,700,900&display=swap" rel="stylesheet"/> 
     <h1>
-      <div class="menu">
-        <button class="btn clearall menu-button" onClick={toggleMenu} aria-expanded={menuOpen} aria-haspopup="true">
-          Menu
-        </button>
-        {menuOpen && (
+      <button
+        class="menu-trigger"
+        onClick={toggleMenu}
+        aria-expanded={menuOpen}
+        aria-haspopup="true"
+        aria-label="Open menu"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" />
+        </svg>
+      </button>
+      {menuOpen && (
+        <>
+          <div class="menu-backdrop" onClick={toggleMenu}></div>
           <div class="menu-panel">
+            <div class="menu-panel-header">
+              <span>Menu</span>
+              <button class="menu-close" onClick={toggleMenu} aria-label="Close menu">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.29 19.71 2.88 18.3 9.18 12 2.88 5.71 4.29 4.29l6.3 6.3 6.29-6.3 1.42 1.42z" />
+                </svg>
+              </button>
+            </div>
             <button class="menu-item" onClick={handleNewList}>New list</button>
             <button class="menu-item" onClick={handleThemeChange}>Change theme</button>
           </div>
-        )}
-      </div>
+        </>
+      )}
       Shopix
       <div class="amount"><span>{todos.filter(todo => !todo.complete).length}</span> left</div>
     </h1>

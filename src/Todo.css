@@ -31,35 +31,73 @@ body h1 {
   width: 100%;
   height: 100%;
 }
-.btn.clearall {
-  font-size: 15px;
+.menu-trigger {
   position: absolute;
-  top: 28px;
-  left: 30px;
-  color: white;
-  padding: 4px 15px;
-  border-radius: 22px;
+  top: 20px;
+  left: 20px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   border: 0;
-}
-.menu {
-  position: absolute;
-  top: 28px;
-  left: 30px;
-}
-.menu-button {
-  position: relative;
-}
-.menu-panel {
-  position: absolute;
-  left: 0;
-  top: calc(100% + 8px);
-  min-width: 150px;
   background: white;
   color: #252525;
-  border-radius: 12px;
-  padding: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+.menu-trigger svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 8;
+}
+.menu-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: min(320px, 85vw);
+  background: white;
+  color: #252525;
+  padding: 20px;
+  box-shadow: 10px 0 25px rgba(0, 0, 0, 0.25);
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: menuSlideIn 0.25s ease-out;
+}
+.menu-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.menu-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(0, 0, 0, 0.08);
+  color: #252525;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.menu-close svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 .menu-item {
   appearance: none;
@@ -70,13 +108,22 @@ body h1 {
   background: transparent;
   color: inherit;
   text-align: left;
-  padding: 8px 10px;
-  border-radius: 8px;
-  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
 }
 .menu-item:hover {
   background: rgba(0, 0, 0, 0.08);
+}
+
+@keyframes menuSlideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 .todoList {
   padding: 40px 30px 30px 30px;
