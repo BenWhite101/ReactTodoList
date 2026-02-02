@@ -10,6 +10,7 @@ function App() {
   //const [todos, setTodos] =  useState([{id: 1, name: 'Todo 1', complete: false}])
   const [todos, setTodos] =  useState([])
   const todoNameRef = useRef() // Give access to input element
+  const [lastAddedId, setLastAddedId] = useState(null)
 
 
 
@@ -25,6 +26,17 @@ function App() {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
   }, [todos])
 
+  useEffect(() => {
+    if (!lastAddedId) return
+    const el = document.getElementById(`todo-${lastAddedId}`)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+    if (todoNameRef.current) {
+      todoNameRef.current.focus()
+    }
+  }, [lastAddedId])
+
 
   function toggleTodo(id){
     const newTodos = [...todos] //create copy
@@ -39,9 +51,11 @@ function App() {
     const name = todoNameRef.current.value
     if (name === '') return
     console.log(name)
+    const id = uuidv4()
     setTodos(prevTodos => {
-      return [...prevTodos, {id: uuidv4(), name: name, complete: false}]
+      return [...prevTodos, {id: id, name: name, complete: false}]
     })
+    setLastAddedId(id)
     todoNameRef.current.value = null  //Clear input
     todoNameRef.current.focus();
   }
@@ -56,6 +70,12 @@ function App() {
     setTodos(newTodos)
   }
 
+  function handleInputKeyDown(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      handleAddTodo()
+    }
+  }
 
   /*
   document.getElementById('enterTodo').addEventListener("keyup", function(event) {
@@ -94,7 +114,7 @@ function App() {
     </div>
     <div class="toolbar">
     
-      <input id="enterTodo" ref={todoNameRef} /*onKeyPress={this.keyPressed}*/ type="text" />
+      <input id="enterTodo" ref={todoNameRef} onKeyDown={handleInputKeyDown} type="text" />
 
       <div class="actions">
         

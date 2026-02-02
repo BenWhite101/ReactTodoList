@@ -6,7 +6,7 @@ export default function Todo({todo, toggleTodo}) {
         //call toggleTodo with the id of the todo clicked
     }
     return (
-        <div class="todo">
+        <div class="todo" id={`todo-${todo.id}`}>
             <label>
                 <input type="checkbox" onChange={handleTodoClick}  checked={todo.complete}></input>
                 <span contenteditable="true" class="name">{todo.name}</span>
