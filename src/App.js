@@ -11,6 +11,7 @@ function App() {
   const [todos, setTodos] =  useState([])
   const todoNameRef = useRef() // Give access to input element
   const [lastAddedId, setLastAddedId] = useState(null)
+  const [menuOpen, setMenuOpen] = useState(false)
 
 
 
@@ -102,7 +103,7 @@ function App() {
     }
   }) */
 
-  function myFunction() {
+  function cycleTheme() {
     var element = document.getElementById("body");
     //element.classList.add("mystyle");
     console.log(element.className);
@@ -116,6 +117,20 @@ function App() {
       element.className = 'purple';
     }
  }
+ 
+  function toggleMenu() {
+    setMenuOpen(open => !open)
+  }
+
+  function handleNewList() {
+    handleClearAll()
+    setMenuOpen(false)
+  }
+
+  function handleThemeChange() {
+    cycleTheme()
+    setMenuOpen(false)
+  }
 
  
   
@@ -123,7 +138,21 @@ function App() {
   return (
     <>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Poppins:300,400,500,600,700,900&display=swap" rel="stylesheet"/> 
-    <h1 onClick={myFunction}><button class="btn clearall" onClick={handleClearAll}>New</button> Shopix <div class="amount"><span>{todos.filter(todo => !todo.complete).length}</span> left</div></h1>
+    <h1>
+      <div class="menu">
+        <button class="btn clearall menu-button" onClick={toggleMenu} aria-expanded={menuOpen} aria-haspopup="true">
+          Menu
+        </button>
+        {menuOpen && (
+          <div class="menu-panel">
+            <button class="menu-item" onClick={handleNewList}>New list</button>
+            <button class="menu-item" onClick={handleThemeChange}>Change theme</button>
+          </div>
+        )}
+      </div>
+      Shopix
+      <div class="amount"><span>{todos.filter(todo => !todo.complete).length}</span> left</div>
+    </h1>
     <div class="todoList">
       <TodoList
         todos={todos}
