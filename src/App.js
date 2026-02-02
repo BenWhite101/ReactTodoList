@@ -2,6 +2,21 @@ import React, {useState, useRef, useEffect} from 'react';
 import uuidv4 from 'uuid/v4' // library with func that generates random id
 import TodoList from './TodoList'
 import groceryData from './groceryItems.json'
+import { HugeiconsIcon } from '@hugeicons/react'
+import {
+  Apple01Icon,
+  BananaIcon,
+  Bread01Icon,
+  CarrotIcon,
+  CheeseIcon,
+  ChickenThighsIcon,
+  CroissantIcon,
+  EggsIcon,
+  MilkCartonIcon,
+  SausageIcon,
+  SteakIcon,
+  Taco01Icon
+} from '@hugeicons/core-free-icons'
 
 //useEffect - localstorage thing
 
@@ -19,6 +34,20 @@ const THEMES = [
   { id: 'black', label: 'Black' },
   { id: 'white', label: 'White' }
 ]
+const GROCERY_ICON_MAP = {
+  Apple01Icon,
+  BananaIcon,
+  Bread01Icon,
+  CarrotIcon,
+  CheeseIcon,
+  ChickenThighsIcon,
+  CroissantIcon,
+  EggsIcon,
+  MilkCartonIcon,
+  SausageIcon,
+  SteakIcon,
+  Taco01Icon
+}
 
 function isValidTodos(value) {
   return Array.isArray(value) && value.every(item => item && typeof item.id === 'string' && typeof item.name === 'string' && typeof item.complete === 'boolean')
@@ -66,7 +95,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuClosing, setMenuClosing] = useState(false)
   const [menuScreen, setMenuScreen] = useState('root')
-  const [menuGroupId, setMenuGroupId] = useState(null)
+  const [expandedGroups, setExpandedGroups] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
   const [theme, setTheme] = useState('purple')
   const closeTimerRef = useRef(null)
   const groceryGroups = groceryData.groups || []
@@ -196,7 +226,6 @@ function App() {
       setMenuOpen(false)
       setMenuClosing(false)
       setMenuScreen('root')
-      setMenuGroupId(null)
     }, 250)
   }
 
@@ -215,7 +244,6 @@ function App() {
 
   function openThemeMenu() {
     setMenuScreen('theme')
-    setMenuGroupId(null)
   }
 
   function handleThemeSelect(nextTheme) {
@@ -225,22 +253,10 @@ function App() {
 
   function openSelectItemsMenu() {
     setMenuScreen('select')
-    setMenuGroupId(null)
-  }
-
-  function openGroupMenu(groupId) {
-    setMenuScreen('group')
-    setMenuGroupId(groupId)
   }
 
   function handleMenuBack() {
-    if (menuScreen === 'group') {
-      setMenuScreen('select')
-      setMenuGroupId(null)
-      return
-    }
     setMenuScreen('root')
-    setMenuGroupId(null)
   }
 
   function toggleGroceryItem(groupId, item) {
@@ -254,20 +270,39 @@ function App() {
     })
   }
 
+  function toggleGroup(groupId) {
+    setExpandedGroups(prev => {
+      if (prev.includes(groupId)) {
+        return prev.filter(id => id !== groupId)
+      }
+      return [...prev, groupId]
+    })
+  }
+
+  function openAllGroups() {
+    setExpandedGroups(groceryGroups.map(group => group.id))
+  }
+
+  const normalizedSearch = searchTerm.trim().toLowerCase()
+  const hasSearch = normalizedSearch.length > 0
+  const filteredGroups = groceryGroups
+    .map(group => {
+      const items = hasSearch
+        ? group.items.filter(item => item.name.toLowerCase().includes(normalizedSearch))
+        : group.items
+      return { ...group, items }
+    })
+    .filter(group => (hasSearch ? group.items.length > 0 : true))
+
   const menuTitle = (() => {
     if (menuScreen === 'theme') return 'Choose theme'
     if (menuScreen === 'select') return 'Select items'
-    if (menuScreen === 'group') {
-      const group = groceryGroups.find(item => item.id === menuGroupId)
-      return group ? group.name : 'Items'
-    }
     return 'Menu'
   })()
 
   const menuIndex = (() => {
     if (menuScreen === 'theme') return 1
     if (menuScreen === 'select') return 2
-    if (menuScreen === 'group') return 3
     return 0
   })()
 
@@ -379,43 +414,67 @@ function App() {
                   </div>
                 </div>
                 <div class="menu-view menu-view-select">
-                  <div class="menu-theme-list">
-                    {groceryGroups.map(group => (
-                      <button
-                        key={group.id}
-                        class="menu-item menu-item-next"
-                        onClick={() => openGroupMenu(group.id)}
-                      >
-                        <span class="menu-item-label">{group.name}</span>
-                        <span class="menu-item-right">
-                          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                            <path d="M9 6l1.4-1.4L18.8 12l-8.4 7.4L9 18l6-6z" />
-                          </svg>
-                        </span>
-                      </button>
-                    ))}
+                  <div class="menu-select-controls">
+                    <div class="menu-search">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M11 4a7 7 0 015.6 11.2l3.6 3.6-1.4 1.4-3.6-3.6A7 7 0 1111 4zm0 2a5 5 0 100 10 5 5 0 000-10z" />
+                      </svg>
+                      <input
+                        type="text"
+                        placeholder="Search"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                      />
+                    </div>
+                    <button class="menu-open-all" onClick={openAllGroups}>Open All</button>
                   </div>
-                </div>
-                <div class="menu-view menu-view-group">
-                  <div class="menu-theme-list">
-                    {(groceryGroups.find(group => group.id === menuGroupId)?.items || []).map(item => {
-                      const groceryId = `grocery:${menuGroupId}:${item.id}`
-                      const isSelected = todos.some(todo => todo.id === groceryId)
+                  <div class="menu-group-list">
+                    {filteredGroups.map(group => {
+                      const isExpanded = hasSearch || expandedGroups.includes(group.id)
                       return (
-                        <button
-                          key={item.id}
-                          class={`menu-item ${isSelected ? 'menu-item-active' : ''}`}
-                          onClick={() => toggleGroceryItem(menuGroupId, item)}
-                        >
-                          {item.name}
-                          {isSelected && (
-                            <span class="menu-item-check" aria-hidden="true">
-                              <svg viewBox="0 0 24 24" focusable="false">
-                                <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                        <div key={group.id} class="menu-group">
+                          <button class="menu-group-header" onClick={() => toggleGroup(group.id)}>
+                            <span>{group.name}</span>
+                            <span class={`menu-group-chevron ${isExpanded ? 'open' : ''}`}>
+                              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path d="M6 9l6 6 6-6" />
                               </svg>
                             </span>
+                          </button>
+                          {isExpanded && (
+                            <div class="menu-item-grid">
+                              {group.items.map(item => {
+                                const groceryId = `grocery:${group.id}:${item.id}`
+                                const isSelected = todos.some(todo => todo.id === groceryId)
+                                return (
+                                  <button
+                                    key={item.id}
+                                    class={`menu-square ${isSelected ? 'selected' : ''}`}
+                                    onClick={() => toggleGroceryItem(group.id, item)}
+                                  >
+                                    <span class="menu-square-icon" aria-hidden="true">
+                                      {item.icon && GROCERY_ICON_MAP[item.icon] ? (
+                                        <HugeiconsIcon icon={GROCERY_ICON_MAP[item.icon]} size={28} color="currentColor" />
+                                      ) : (
+                                        <svg class="menu-square-fallback" viewBox="0 0 24 24" focusable="false">
+                                          <path d="M7 6h10l2 6v7a1 1 0 01-1 1h-1a1 1 0 01-1-1v-1H8v1a1 1 0 01-1 1H6a1 1 0 01-1-1v-7l2-6zm1.2 2L7 12h10l-1.2-4H8.2z" />
+                                        </svg>
+                                      )}
+                                    </span>
+                                    <span class="menu-square-label">{item.name}</span>
+                                    {isSelected && (
+                                      <span class="menu-square-check" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" focusable="false">
+                                          <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                                        </svg>
+                                      </span>
+                                    )}
+                                  </button>
+                                )
+                              })}
+                            </div>
                           )}
-                        </button>
+                        </div>
                       )
                     })}
                   </div>

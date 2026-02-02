@@ -4,36 +4,36 @@
       "id": "meat",
       "name": "Meat",
       "items": [
-        { "id": "mince", "name": "Mince meat" },
-        { "id": "chicken-breast", "name": "Chicken breast" },
-        { "id": "sausages", "name": "Sausages" }
+        { "id": "mince", "name": "Mince meat", "icon": "SteakIcon" },
+        { "id": "chicken-breast", "name": "Chicken breast", "icon": "ChickenThighsIcon" },
+        { "id": "sausages", "name": "Sausages", "icon": "SausageIcon" }
       ]
     },
     {
       "id": "dairy",
       "name": "Dairy",
       "items": [
-        { "id": "milk", "name": "Milk" },
-        { "id": "eggs", "name": "Eggs" },
-        { "id": "butter", "name": "Butter" }
+        { "id": "milk", "name": "Milk", "icon": "MilkCartonIcon" },
+        { "id": "eggs", "name": "Eggs", "icon": "EggsIcon" },
+        { "id": "butter", "name": "Butter", "icon": "CheeseIcon" }
       ]
     },
     {
       "id": "produce",
       "name": "Produce",
       "items": [
-        { "id": "apples", "name": "Apples" },
-        { "id": "bananas", "name": "Bananas" },
-        { "id": "onions", "name": "Onions" }
+        { "id": "apples", "name": "Apples", "icon": "Apple01Icon" },
+        { "id": "bananas", "name": "Bananas", "icon": "BananaIcon" },
+        { "id": "onions", "name": "Onions", "icon": "CarrotIcon" }
       ]
     },
     {
       "id": "bakery",
       "name": "Bakery",
       "items": [
-        { "id": "bread", "name": "Bread" },
-        { "id": "bagels", "name": "Bagels" },
-        { "id": "tortillas", "name": "Tortillas" }
+        { "id": "bread", "name": "Bread", "icon": "Bread01Icon" },
+        { "id": "bagels", "name": "Bagels", "icon": "CroissantIcon" },
+        { "id": "tortillas", "name": "Tortillas", "icon": "Taco01Icon" }
       ]
     }
   ]
