@@ -191,7 +191,7 @@ body h1 {
 }
 .menu-panel-track {
   display: flex;
-  width: 300%;
+  width: 100%;
   transition: transform 0.25s ease;
 }
 .menu-view {
