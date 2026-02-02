@@ -21,7 +21,7 @@
         { "id": "milk", "name": "Milk", "icon": "MilkCartonIcon" },
         { "id": "eggs", "name": "Eggs", "icon": "EggsIcon" },
         { "id": "cheese", "name": "Cheese", "icon": "CheeseIcon" },
-        { "id": "butter", "name": "Butter", "icon": "YogurtIcon" },
+        { "id": "butter", "name": "Butter", "icon": "CheeseIcon" },
         { "id": "yogurt", "name": "Yogurt", "icon": "YogurtIcon" },
         { "id": "potYogurt", "name": "Pot Yogurt", "icon": "YogurtIcon" },
         { "id": "curdCheese", "name": "Curd Cheese", "icon": "CheeseIcon" },
@@ -40,21 +40,21 @@
         { "id": "tomatoes", "name": "Tomatoes", "icon": "CarrotIcon" },
         { "id": "cucumber", "name": "Cucumber", "icon": "CarrotIcon" },
         { "id": "red-onion", "name": "Red Onion", "icon": "CarrotIcon" },
-        { "id": "corn", "name": "Corn", "icon": "CarrotIcon" },
-        { "id": "baby-corn", "name": "Baby Corn", "icon": "CarrotIcon" },
+        { "id": "corn", "name": "Corn", "icon": "CornIcon" },
+        { "id": "baby-corn", "name": "Baby Corn", "icon": "CornIcon" },
         { "id": "magetout", "name": "Mangetout", "icon": "CarrotIcon" },
         { "id": "potatoes", "name": "Potatoes", "icon": "CarrotIcon" },
         { "id": "leeks", "name": "Leeks", "icon": "CarrotIcon" },
-        { "id": "squash", "name": "Squash", "icon": "CarrotIcon" },
+        { "id": "squash", "name": "Squash", "icon": "PumpkinIcon" },
         { "id": "carrots", "name": "Carrots", "icon": "CarrotIcon" },
-        { "id": "pumpkin", "name": "Pumpkin", "icon": "CarrotIcon" },
+        { "id": "pumpkin", "name": "Pumpkin", "icon": "PumpkinIcon" },
         { "id": "peppers", "name": "Peppers", "icon": "CarrotIcon" },
-        { "id": "broccoli", "name": "Broccoli", "icon": "CarrotIcon" },
+        { "id": "broccoli", "name": "Broccoli", "icon": "BroccoliIcon" },
         { "id": "parsnips", "name": "Parsnips", "icon": "CarrotIcon" },
         { "id": "cauliflower", "name": "Cauliflower", "icon": "CarrotIcon" },
         { "id": "lettuce", "name": "Lettuce", "icon": "CarrotIcon" },
         { "id": "spinach", "name": "Spinach", "icon": "CarrotIcon" },
-        { "id": "mushrooms", "name": "Mushrooms", "icon": "CarrotIcon" },
+        { "id": "mushrooms", "name": "Mushrooms", "icon": "MushroomIcon" },
         { "id": "asparagus", "name": "Asparagus", "icon": "CarrotIcon" }
       ]
     },
@@ -70,9 +70,9 @@
         { "id": "buns", "name": "Buns", "icon": "Bread04Icon" },
         { "id": "toast", "name": "Toast", "icon": "Bread03Icon" },
         { "id": "polish-bread", "name": "Polish Bread", "icon": "Bread04Icon" },
-        { "id": "donuts", "name": "Donuts", "icon": "Bread03Icon" },
+        { "id": "donuts", "name": "Donuts", "icon": "DoughnutIcon" },
         { "id": "sweet-buns", "name": "Sweet Buns", "icon": "Bread04Icon" },
-        { "id": "cakes", "name": "Cakes", "icon": "Bread03Icon" },
+        { "id": "cakes", "name": "Cakes", "icon": "BirthdayCakeIcon" },
         { "id": "hot-dog-bun", "name": "Hot Dog Bun", "icon": "Bread04Icon" }
       ]
     },
@@ -83,10 +83,10 @@
         { "id": "blueberries", "name": "Blueberries", "icon": "Apple01Icon" },
         { "id": "strawberries", "name": "Strawberries", "icon": "Apple01Icon" },
         { "id": "kiwi", "name": "Kiwi", "icon": "Apple01Icon" },
-        { "id": "grapes", "name": "Grapes", "icon": "Apple01Icon" },
+        { "id": "grapes", "name": "Grapes", "icon": "GrapesIcon" },
         { "id": "pears", "name": "Pears", "icon": "Apple01Icon" },
-        { "id": "oranges", "name": "Oranges", "icon": "Apple01Icon" },
-        { "id": "watermelon", "name": "Watermelon", "icon": "Apple01Icon" },
+        { "id": "oranges", "name": "Oranges", "icon": "OrangeIcon" },
+        { "id": "watermelon", "name": "Watermelon", "icon": "WatermelonIcon" },
         { "id": "melon", "name": "Melon", "icon": "Apple01Icon" },
         { "id": "pineapple", "name": "Pineapple", "icon": "Apple01Icon" }
       ]
@@ -105,82 +105,82 @@
       "id": "cleaning",
       "name": "Cleaning",
       "items": [
-        { "id": "dish-washing-liquid", "name": "Dish Washing Liquid", "icon": "ICONNEEDED" },
-        { "id": "fabric-softener", "name": "Fabric Softener", "icon": "ICONNEEDED" },
-        { "id": "washing-capsules", "name": "Washing Capsules", "icon": "ICONNEEDED" },
-        { "id": "laundry-sheets", "name": "Laundry Sheets", "icon": "ICONNEEDED" },
-        { "id": "degreaser-spray", "name": "Degreaser Spray", "icon": "ICONNEEDED" },
-        { "id": "bleach", "name": "Bleach", "icon": "ICONNEEDED" },
-        { "id": "bathroom-spray", "name": "Bathroom Spray", "icon": "ICONNEEDED" },
-        { "id": "wet-wipes", "name": "Wet Wipes", "icon": "ICONNEEDED" }
+        { "id": "dish-washing-liquid", "name": "Dish Washing Liquid", "icon": "DetergentIcon" },
+        { "id": "fabric-softener", "name": "Fabric Softener", "icon": "DetergentIcon" },
+        { "id": "washing-capsules", "name": "Washing Capsules", "icon": "DetergentIcon" },
+        { "id": "laundry-sheets", "name": "Laundry Sheets", "icon": "DetergentIcon" },
+        { "id": "degreaser-spray", "name": "Degreaser Spray", "icon": "CleanIcon" },
+        { "id": "bleach", "name": "Bleach", "icon": "MedicineBottle01Icon" },
+        { "id": "bathroom-spray", "name": "Bathroom Spray", "icon": "CleanIcon" },
+        { "id": "wet-wipes", "name": "Wet Wipes", "icon": "CleanIcon" }
       ]
     },
     {
       "id": "canned-food",
       "name": "Canned Food",
       "items": [
-        { "id": "chopped-tomatoes", "name": "Chopped Tomatoes", "icon": "ICONNEEDED" },
-        { "id": "tomato-puree", "name": "Tomato Puree", "icon": "ICONNEEDED" },
-        { "id": "beans", "name": "Beans", "icon": "ICONNEEDED" },
-        { "id": "kidney-beans", "name": "Kidney Beans", "icon": "ICONNEEDED" },
-        { "id": "black-beans", "name": "Black Beans", "icon": "ICONNEEDED" },
-        { "id": "butter-beans", "name": "Butter Beans", "icon": "ICONNEEDED" },
-        { "id": "canned-corn", "name": "Canned Corn", "icon": "ICONNEEDED" },
-        { "id": "plum-tomatoes", "name": "Plum Tomatoes", "icon": "ICONNEEDED" }
+        { "id": "chopped-tomatoes", "name": "Chopped Tomatoes", "icon": "SodaCanIcon" },
+        { "id": "tomato-puree", "name": "Tomato Puree", "icon": "SodaCanIcon" },
+        { "id": "beans", "name": "Beans", "icon": "SodaCanIcon" },
+        { "id": "kidney-beans", "name": "Kidney Beans", "icon": "SodaCanIcon" },
+        { "id": "black-beans", "name": "Black Beans", "icon": "SodaCanIcon" },
+        { "id": "butter-beans", "name": "Butter Beans", "icon": "SodaCanIcon" },
+        { "id": "canned-corn", "name": "Canned Corn", "icon": "SodaCanIcon" },
+        { "id": "plum-tomatoes", "name": "Plum Tomatoes", "icon": "SodaCanIcon" }
       ]
     },
     {
       "id": "jars-and-pots",
       "name": "Jars & Pots",
       "items": [
-        { "id": "jam", "name": "Jam", "icon": "ICONNEEDED" },
-        { "id": "sour-pickles", "name": "Sour Pickles", "icon": "ICONNEEDED" },
-        { "id": "dill-pickles", "name": "Dill Pickles", "icon": "ICONNEEDED" },
-        { "id": "ketchup", "name": "Ketchup", "icon": "ICONNEEDED" },
-        { "id": "mustard", "name": "Mustard", "icon": "ICONNEEDED" },
-        { "id": "tex-mex-sauces", "name": "Tex Mex Sauces", "icon": "ICONNEEDED" },
-        { "id": "tatar-sauce", "name": "Tatar Sauce", "icon": "ICONNEEDED" },
-        { "id": "crispy-onion", "name": "Crispy Onion", "icon": "ICONNEEDED" },
-        { "id": "red-curry-paste", "name": "Red Curry Paste", "icon": "ICONNEEDED" },
-        { "id": "indian-curry-paste", "name": "Indian Curry Paste", "icon": "ICONNEEDED" },
-        { "id": "sweet-and-sour-sauce", "name": "Sweet & Sour Sauce", "icon": "ICONNEEDED" }
+        { "id": "jam", "name": "Jam", "icon": "JarIcon" },
+        { "id": "sour-pickles", "name": "Sour Pickles", "icon": "JarIcon" },
+        { "id": "dill-pickles", "name": "Dill Pickles", "icon": "JarIcon" },
+        { "id": "ketchup", "name": "Ketchup", "icon": "JarIcon" },
+        { "id": "mustard", "name": "Mustard", "icon": "JarIcon" },
+        { "id": "tex-mex-sauces", "name": "Tex Mex Sauces", "icon": "JarIcon" },
+        { "id": "tatar-sauce", "name": "Tatar Sauce", "icon": "JarIcon" },
+        { "id": "crispy-onion", "name": "Crispy Onion", "icon": "JarIcon" },
+        { "id": "red-curry-paste", "name": "Red Curry Paste", "icon": "JarIcon" },
+        { "id": "indian-curry-paste", "name": "Indian Curry Paste", "icon": "JarIcon" },
+        { "id": "sweet-and-sour-sauce", "name": "Sweet & Sour Sauce", "icon": "JarIcon" }
       ]
     },
     {
       "id": "grains",
       "name": "Grains",
       "items": [
-        { "id": "rice", "name": "Rice", "icon": "ICONNEEDED" },
-        { "id": "oats", "name": "Oats", "icon": "ICONNEEDED" },
-        { "id": "porridge", "name": "Porridge", "icon": "ICONNEEDED" },
-        { "id": "kasza", "name": "Kasza", "icon": "ICONNEEDED" },
-        { "id": "groats", "name": "Groats", "icon": "ICONNEEDED" },
-        { "id": "grits", "name": "Grits", "icon": "ICONNEEDED" },
-        { "id": "pasta", "name": "Pasta", "icon": "ICONNEEDED" },
-        { "id": "cereals", "name": "Cereals", "icon": "ICONNEEDED" },
-        { "id": "popcorn", "name": "Popcorn", "icon": "ICONNEEDED" }
+        { "id": "rice", "name": "Rice", "icon": "RiceBowl01Icon" },
+        { "id": "oats", "name": "Oats", "icon": "MilkOatIcon" },
+        { "id": "porridge", "name": "Porridge", "icon": "RiceBowl02Icon" },
+        { "id": "kasza", "name": "Kasza", "icon": "RiceBowl01Icon" },
+        { "id": "groats", "name": "Groats", "icon": "RiceBowl01Icon" },
+        { "id": "grits", "name": "Grits", "icon": "RiceBowl01Icon" },
+        { "id": "pasta", "name": "Pasta", "icon": "NoodlesIcon" },
+        { "id": "cereals", "name": "Cereals", "icon": "RiceBowl01Icon" },
+        { "id": "popcorn", "name": "Popcorn", "icon": "PopcornIcon" }
       ]
     },
     {
       "id": "drinks",
       "name": "Drinks",
       "items": [
-        { "id": "coffee", "name": "Coffee", "icon": "MilkCartonIcon" },
-        { "id": "water", "name": "Water", "icon": "MilkCartonIcon" },
-        { "id": "tea", "name": "Tea", "icon": "MilkCartonIcon" },
-        { "id": "chai-tea", "name": "Chai Tea", "icon": "MilkCartonIcon" },
-        { "id": "iced-tea", "name": "Iced Tea", "icon": "MilkCartonIcon" },
-        { "id": "squash-drink", "name": "Squash Drink", "icon": "MilkCartonIcon" },
-        { "id": "coconut-milk-drink", "name": "Coconut Milk", "icon": "MilkCartonIcon" }
+        { "id": "coffee", "name": "Coffee", "icon": "Coffee01Icon" },
+        { "id": "water", "name": "Water", "icon": "WaterEnergyIcon" },
+        { "id": "tea", "name": "Tea", "icon": "TeaIcon" },
+        { "id": "chai-tea", "name": "Chai Tea", "icon": "TeaIcon" },
+        { "id": "iced-tea", "name": "Iced Tea", "icon": "BubbleTea01Icon" },
+        { "id": "squash-drink", "name": "Squash Drink", "icon": "MilkBottleIcon" },
+        { "id": "coconut-milk-drink", "name": "Coconut Milk", "icon": "MilkCoconutIcon" }
       ]
     },
     {
       "id": "sweets",
       "name": "Sweets",
       "items": [
-        { "id": "jellies", "name": "Jellies", "icon": "CroissantIcon" },
-        { "id": "chocolate", "name": "Chocolate", "icon": "CroissantIcon" },
-        { "id": "biscuits", "name": "Biscuits", "icon": "CroissantIcon" }
+        { "id": "jellies", "name": "Jellies", "icon": "CottonCandyIcon" },
+        { "id": "chocolate", "name": "Chocolate", "icon": "ChocolateIcon" },
+        { "id": "biscuits", "name": "Biscuits", "icon": "CookieIcon" }
       ]
     }
   ]
