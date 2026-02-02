@@ -18,6 +18,7 @@
         { "id": "cheese", "name": "Cheese", "icon": "CheeseIcon" },
         { "id": "butter", "name": "Butter", "icon": "YogurtIcon" },
         { "id": "yogurt", "name": "Yogurt", "icon": "YogurtIcon" },
+        { "id": "potYogurt", "name": "Pot Yogurt", "icon": "YogurtIcon" },
         { "id": "curdCheese", "name": "Curd Cheese", "icon": "CheeseIcon" },
         { "id": "brie", "name": "Brie", "icon": "CheeseIcon" },
         { "id": "cheeseSlices", "name": "Cheese Slices", "icon": "CheeseIcon" }
