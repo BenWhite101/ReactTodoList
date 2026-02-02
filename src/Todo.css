@@ -191,7 +191,7 @@ body h1 {
 }
 .menu-panel-track {
   display: flex;
-  width: 400%;
+  width: 300%;
   transition: transform 0.25s ease;
 }
 .menu-view {
@@ -204,6 +204,137 @@ body h1 {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+.menu-select-controls {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+.menu-search {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background: white;
+}
+.menu-search svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  opacity: 0.6;
+}
+.menu-search input {
+  border: 0;
+  font-size: 14px;
+  outline: none;
+  background: transparent;
+}
+.menu-open-all {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-decoration: underline;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 4px;
+}
+.menu-group-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.menu-group-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 6px 2px;
+  cursor: pointer;
+  color: inherit;
+}
+.menu-group-chevron {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+.menu-group-chevron svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.menu-group-chevron.open {
+  transform: rotate(180deg);
+}
+.menu-item-grid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.menu-square {
+  position: relative;
+  border: 1px solid #cfcfcf;
+  border-radius: 18px;
+  background: #ffffff;
+  padding: 14px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: inherit;
+}
+.menu-square-icon svg {
+  width: 28px;
+  height: 28px;
+}
+.menu-square-icon .menu-square-fallback {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.menu-square-label {
+  text-align: center;
+  font-size: 12px;
+}
+.menu-square.selected {
+  border-color: #252525;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+.menu-square-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu-square-check svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
 }
 .menu-item-active {
   background: rgba(0, 0, 0, 0.08);
