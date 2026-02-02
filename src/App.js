@@ -6,7 +6,8 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import {
   Apple01Icon,
   BananaIcon,
-  Bread01Icon,
+  Bread03Icon,
+  Bread04Icon,
   CarrotIcon,
   CheeseIcon,
   ChickenThighsIcon,
@@ -15,7 +16,9 @@ import {
   MilkCartonIcon,
   SausageIcon,
   SteakIcon,
-  Taco01Icon
+  Taco01Icon,
+  YogurtIcon
+  
 } from '@hugeicons/core-free-icons'
 
 //useEffect - localstorage thing
@@ -37,7 +40,8 @@ const THEMES = [
 const GROCERY_ICON_MAP = {
   Apple01Icon,
   BananaIcon,
-  Bread01Icon,
+  Bread03Icon,
+  Bread04Icon,
   CarrotIcon,
   CheeseIcon,
   ChickenThighsIcon,
@@ -46,7 +50,8 @@ const GROCERY_ICON_MAP = {
   MilkCartonIcon,
   SausageIcon,
   SteakIcon,
-  Taco01Icon
+  Taco01Icon,
+  YogurtIcon
 }
 
 function isValidTodos(value) {
