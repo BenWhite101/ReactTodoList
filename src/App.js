@@ -6,6 +6,9 @@ import TodoList from './TodoList'
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 const LOCAL_STORAGE_THEME_KEY = 'todoApp.theme'
+const LOCAL_STORAGE_STATE_KEY = 'todoApp.state'
+const LOCAL_STORAGE_BACKUP_KEY = 'todoApp.state.backup'
+const STORAGE_VERSION = 1
 const THEMES = [
   { id: 'purple', label: 'Purple' },
   { id: 'orange', label: 'Orange' },
@@ -30,22 +33,70 @@ function App() {
 
 
   //Storing
-  useEffect(() => { // call once - this is for refreshing page persist
-    // gets local storage key from local storage
-    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
-    if(storedTodos) setTodos(storedTodos)
-    const storedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
-    if (storedTheme && THEMES.some(themeOption => themeOption.id === storedTheme)) {
-      setTheme(storedTheme)
+  function isValidTodos(value) {
+    return Array.isArray(value) && value.every(item => item && typeof item.id === 'string' && typeof item.name === 'string' && typeof item.complete === 'boolean')
+  }
+
+  function loadState() {
+    const fallback = { todos: [], theme: 'purple' }
+    let parsed = null
+    try {
+      const raw = localStorage.getItem(LOCAL_STORAGE_STATE_KEY)
+      if (raw) parsed = JSON.parse(raw)
+    } catch (e) {
+      parsed = null
     }
+
+    if (parsed && parsed.version === STORAGE_VERSION) {
+      const nextTodos = isValidTodos(parsed.todos) ? parsed.todos : fallback.todos
+      const nextTheme = THEMES.some(themeOption => themeOption.id === parsed.theme) ? parsed.theme : fallback.theme
+      return { todos: nextTodos, theme: nextTheme }
+    }
+
+    // Migration from legacy keys
+    let legacyTodos = null
+    let legacyTheme = null
+    try {
+      const rawTodos = localStorage.getItem(LOCAL_STORAGE_KEY)
+      if (rawTodos) legacyTodos = JSON.parse(rawTodos)
+    } catch (e) {
+      legacyTodos = null
+    }
+    legacyTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+    if (!THEMES.some(themeOption => themeOption.id === legacyTheme)) {
+      legacyTheme = fallback.theme
+    }
+
+    const migratedTodos = isValidTodos(legacyTodos) ? legacyTodos : fallback.todos
+    return { todos: migratedTodos, theme: legacyTheme || fallback.theme }
+  }
+
+  useEffect(() => { // call once - this is for refreshing page persist
+    const state = loadState()
+    setTodos(state.todos)
+    setTheme(state.theme)
   }, [])
 
   //Getting our todos
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
-  }, [todos])
+    const nextState = {
+      version: STORAGE_VERSION,
+      todos,
+      theme,
+      updatedAt: new Date().toISOString()
+    }
+    try {
+      localStorage.setItem(LOCAL_STORAGE_STATE_KEY, JSON.stringify(nextState))
+    } catch (e) {
+      // Fallback to backup on write failure
+      try {
+        localStorage.setItem(LOCAL_STORAGE_BACKUP_KEY, JSON.stringify(nextState))
+      } catch (backupError) {
+        // Ignore backup failures
+      }
+    }
+  }, [todos, theme])
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme)
     const element = document.getElementById("body");
     if (element) {
       element.className = theme
@@ -215,9 +266,21 @@ function App() {
             <div class="menu-panel-body">
               <div class={`menu-panel-track ${menuView}`}>
                 <div class="menu-view menu-view-root">
-                  <button class="menu-item" onClick={handleNewList}>New list</button>
+                  <button class="menu-item" onClick={handleNewList}>
+                    <span class="menu-item-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M12 5v14m-7-7h14" />
+                      </svg>
+                    </span>
+                    <span class="menu-item-label">New List</span>
+                  </button>
                   <button class="menu-item menu-item-next" onClick={openThemeMenu}>
-                    <span class="menu-item-label">Change theme</span>
+                    <span class="menu-item-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M12 3a9 9 0 109 9h-9z" />
+                      </svg>
+                    </span>
+                    <span class="menu-item-label">Change Theme</span>
                     <span class="menu-item-right">
                       <span class="menu-item-meta">
                         {THEMES.find(themeOption => themeOption.id === theme)?.label || 'Purple'}
