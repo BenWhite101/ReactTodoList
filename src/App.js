@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import uuidv4 from 'uuid/v4' // library with func that generates random id
 import TodoList from './TodoList'
+import groceryData from './groceryItems.json'
 
 //useEffect - localstorage thing
 
@@ -64,9 +65,11 @@ function App() {
   const [lastAddedId, setLastAddedId] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuClosing, setMenuClosing] = useState(false)
-  const [menuView, setMenuView] = useState('root')
+  const [menuScreen, setMenuScreen] = useState('root')
+  const [menuGroupId, setMenuGroupId] = useState(null)
   const [theme, setTheme] = useState('purple')
   const closeTimerRef = useRef(null)
+  const groceryGroups = groceryData.groups || []
 
 
 
@@ -192,7 +195,8 @@ function App() {
     closeTimerRef.current = setTimeout(() => {
       setMenuOpen(false)
       setMenuClosing(false)
-      setMenuView('root')
+      setMenuScreen('root')
+      setMenuGroupId(null)
     }, 250)
   }
 
@@ -210,13 +214,62 @@ function App() {
   }
 
   function openThemeMenu() {
-    setMenuView('theme')
+    setMenuScreen('theme')
+    setMenuGroupId(null)
   }
 
   function handleThemeSelect(nextTheme) {
     setTheme(nextTheme)
     closeMenu()
   }
+
+  function openSelectItemsMenu() {
+    setMenuScreen('select')
+    setMenuGroupId(null)
+  }
+
+  function openGroupMenu(groupId) {
+    setMenuScreen('group')
+    setMenuGroupId(groupId)
+  }
+
+  function handleMenuBack() {
+    if (menuScreen === 'group') {
+      setMenuScreen('select')
+      setMenuGroupId(null)
+      return
+    }
+    setMenuScreen('root')
+    setMenuGroupId(null)
+  }
+
+  function toggleGroceryItem(groupId, item) {
+    const groceryId = `grocery:${groupId}:${item.id}`
+    setTodos(prevTodos => {
+      const exists = prevTodos.some(todo => todo.id === groceryId)
+      if (exists) {
+        return prevTodos.filter(todo => todo.id !== groceryId)
+      }
+      return [...prevTodos, { id: groceryId, name: item.name, complete: false, source: 'grocery' }]
+    })
+  }
+
+  const menuTitle = (() => {
+    if (menuScreen === 'theme') return 'Choose theme'
+    if (menuScreen === 'select') return 'Select items'
+    if (menuScreen === 'group') {
+      const group = groceryGroups.find(item => item.id === menuGroupId)
+      return group ? group.name : 'Items'
+    }
+    return 'Menu'
+  })()
+
+  const menuIndex = (() => {
+    if (menuScreen === 'theme') return 1
+    if (menuScreen === 'select') return 2
+    if (menuScreen === 'group') return 3
+    return 0
+  })()
 
   useEffect(() => {
     return () => {
@@ -249,14 +302,14 @@ function App() {
           <div class={`menu-backdrop ${menuClosing ? 'closing' : ''}`} onClick={toggleMenu}></div>
           <div class={`menu-panel ${menuClosing ? 'closing' : ''}`}>
             <div class="menu-panel-header">
-              {menuView !== 'root' && (
-                <button class="menu-back" onClick={() => setMenuView('root')} aria-label="Back">
+              {menuScreen !== 'root' && (
+                <button class="menu-back" onClick={handleMenuBack} aria-label="Back">
                   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z" />
                   </svg>
                 </button>
               )}
-              <span>{menuView === 'theme' ? 'Choose theme' : 'Menu'}</span>
+              <span>{menuTitle}</span>
               <button class="menu-close" onClick={toggleMenu} aria-label="Close menu">
                 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <path d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.29 19.71 2.88 18.3 9.18 12 2.88 5.71 4.29 4.29l6.3 6.3 6.29-6.3 1.42 1.42z" />
@@ -264,7 +317,7 @@ function App() {
               </button>
             </div>
             <div class="menu-panel-body">
-              <div class={`menu-panel-track ${menuView}`}>
+              <div class="menu-panel-track" style={{ transform: `translateX(-${menuIndex * 100}%)` }}>
                 <div class="menu-view menu-view-root">
                   <button class="menu-item" onClick={handleNewList}>
                     <span class="menu-item-icon" aria-hidden="true">
@@ -273,6 +326,19 @@ function App() {
                       </svg>
                     </span>
                     <span class="menu-item-label">New List</span>
+                  </button>
+                  <button class="menu-item menu-item-next" onClick={openSelectItemsMenu}>
+                    <span class="menu-item-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" focusable="false">
+                        <path d="M4 6h10M4 12h10M4 18h10M18 7l2 2-3.5 3.5-2-2L18 7z" />
+                      </svg>
+                    </span>
+                    <span class="menu-item-label">Select Items</span>
+                    <span class="menu-item-right">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M9 6l1.4-1.4L18.8 12l-8.4 7.4L9 18l6-6z" />
+                      </svg>
+                    </span>
                   </button>
                   <button class="menu-item menu-item-next" onClick={openThemeMenu}>
                     <span class="menu-item-icon" aria-hidden="true">
@@ -310,6 +376,48 @@ function App() {
                         )}
                       </button>
                     ))}
+                  </div>
+                </div>
+                <div class="menu-view menu-view-select">
+                  <div class="menu-theme-list">
+                    {groceryGroups.map(group => (
+                      <button
+                        key={group.id}
+                        class="menu-item menu-item-next"
+                        onClick={() => openGroupMenu(group.id)}
+                      >
+                        <span class="menu-item-label">{group.name}</span>
+                        <span class="menu-item-right">
+                          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M9 6l1.4-1.4L18.8 12l-8.4 7.4L9 18l6-6z" />
+                          </svg>
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div class="menu-view menu-view-group">
+                  <div class="menu-theme-list">
+                    {(groceryGroups.find(group => group.id === menuGroupId)?.items || []).map(item => {
+                      const groceryId = `grocery:${menuGroupId}:${item.id}`
+                      const isSelected = todos.some(todo => todo.id === groceryId)
+                      return (
+                        <button
+                          key={item.id}
+                          class={`menu-item ${isSelected ? 'menu-item-active' : ''}`}
+                          onClick={() => toggleGroceryItem(menuGroupId, item)}
+                        >
+                          {item.name}
+                          {isSelected && (
+                            <span class="menu-item-check" aria-hidden="true">
+                              <svg viewBox="0 0 24 24" focusable="false">
+                                <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
+                              </svg>
+                            </span>
+                          )}
+                        </button>
+                      )
+                    })}
                   </div>
                 </div>
               </div>
