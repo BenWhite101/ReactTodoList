@@ -6,7 +6,15 @@ import TodoList from './TodoList'
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
 const LOCAL_STORAGE_THEME_KEY = 'todoApp.theme'
-const THEMES = ['purple', 'orange', 'green', 'blue']
+const THEMES = [
+  { id: 'purple', label: 'Purple' },
+  { id: 'orange', label: 'Orange' },
+  { id: 'green', label: 'Green' },
+  { id: 'blue', label: 'Blue' },
+  { id: 'coral', label: 'Coral Raspberry' },
+  { id: 'black', label: 'Black' },
+  { id: 'white', label: 'White' }
+]
 
 function App() {
   //const [todos, setTodos] =  useState([{id: 1, name: 'Todo 1', complete: false}])
@@ -27,7 +35,7 @@ function App() {
     const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     if(storedTodos) setTodos(storedTodos)
     const storedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
-    if (storedTheme && THEMES.includes(storedTheme)) {
+    if (storedTheme && THEMES.some(themeOption => themeOption.id === storedTheme)) {
       setTheme(storedTheme)
     }
   }, [])
@@ -211,7 +219,9 @@ function App() {
                   <button class="menu-item menu-item-next" onClick={openThemeMenu}>
                     <span class="menu-item-label">Change theme</span>
                     <span class="menu-item-right">
-                      <span class="menu-item-meta">{theme.charAt(0).toUpperCase() + theme.slice(1)}</span>
+                      <span class="menu-item-meta">
+                        {THEMES.find(themeOption => themeOption.id === theme)?.label || 'Purple'}
+                      </span>
                       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M9 6l1.4-1.4L18.8 12l-8.4 7.4L9 18l6-6z" />
                       </svg>
@@ -222,13 +232,13 @@ function App() {
                   <div class="menu-theme-list">
                     {THEMES.map((item) => (
                       <button
-                        key={item}
-                        class={`menu-item ${theme === item ? 'menu-item-active' : ''}`}
-                        onClick={() => handleThemeSelect(item)}
+                        key={item.id}
+                        class={`menu-item ${theme === item.id ? 'menu-item-active' : ''}`}
+                        onClick={() => handleThemeSelect(item.id)}
                       >
-                        <span class={`theme-dot ${item}`}></span>
-                        {item.charAt(0).toUpperCase() + item.slice(1)}
-                        {theme === item && (
+                        <span class={`theme-dot ${item.id}`}></span>
+                        {item.label}
+                        {theme === item.id && (
                           <span class="menu-item-check" aria-hidden="true">
                             <svg viewBox="0 0 24 24" focusable="false">
                               <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
